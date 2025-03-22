@@ -59,6 +59,33 @@ export default defineConfig(({ mode }) => {
       rollupOptions: {
         external: Object.keys(externalGlobalsObj),
         output: {
+          entryFileNames: "static/js/[name]-[hash].js",
+          chunkFileNames: "static/js/[name]-[hash].js",
+          assetFileNames(assetInfo) {
+            // 初始化
+            const ext = assetInfo.name?.split(".").pop()?.toLowerCase() || ""
+            if (!ext) return "static/[name]-[hash][extname]"
+
+            // 处理 css
+            if (ext === "css") {
+              return "static/css/[name]-[hash][extname]"
+            }
+
+            // 处理图片
+            const imgExts = new Set(["png", "jpg", "jpeg", "gif", ".bmp", "webp", "avif", "svg", "icon", "svga"])
+            if (imgExts.has(ext)) {
+              return "static/img/[name]-[hash][extname]"
+            }
+
+            // 处理字体
+            const typeFace = new Set(["woff", "woff2", "ttf", "otf"])
+            if (typeFace.has(ext)) {
+              return "static/font/[name]-[hash][extname]"
+            }
+
+            // 默认导出格式
+            return "static/other/[name]-[hash][extname]"
+          },
           /**
            * @name 分块策略
            * @description 1. 注意这些包名(vue、element、vxe)必须存在，否则打包会报错
@@ -80,37 +107,6 @@ export default defineConfig(({ mode }) => {
               "/src/pages/demo/unocss/index.vue",
               "/src/pages/demo/vxe-table/index.vue"
             ]
-          },
-          // 控制入口 JS 文件
-          entryFileNames: "assets/js/[name]-[hash].js",
-
-          // 处理 JS 异步 (类型安全)
-          chunkFileNames: (chunkInfo) => {
-            return chunkInfo.isDynamicEntry
-              ? "assets/js/async/[name]-[hash].js"
-              : "assets/js/[name]-[hash].js"
-          },
-          // 资源分类 (等效 cssAsync + 静态资源分类)
-          assetFileNames: (assetInfo) => {
-            const ext = assetInfo.name?.split(".").pop()?.toLowerCase()
-            if (!ext) return "assets/[name]-[hash][extname]"
-
-            // 按类型分类
-            if (ext === "css") {
-              return "assets/css/[name]-[hash][extname]"
-            }
-            if (["svg", "icon"].includes(ext)) {
-              return "assets/svg/[name]-[hash][extname]"
-            }
-            if (["woff2", "woff", "ttf", "otf"].includes(ext)) {
-              return "assets/font/[name]-[hash][extname]"
-            }
-            if (["png", "jpg", "gif", "webp"].includes(ext)) {
-              return "assets/image/[name]-[hash][extname]"
-            }
-
-            // 其他文件放在 assets 根目录
-            return "assets/[name]-[hash][extname]"
           }
         }
       },
