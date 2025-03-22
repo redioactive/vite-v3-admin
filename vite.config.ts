@@ -72,7 +72,7 @@ export default defineConfig(({ mode }) => {
             }
 
             // 处理图片
-            const imgExts = new Set(["png", "jpg", "jpeg", "gif", ".bmp", "webp", "avif", "svg", "icon", "svga"])
+            const imgExts = new Set(["png", "jpg", "jpeg", "gif", "bmp", "webp", "avif", "svg", "icon", "svga"])
             if (imgExts.has(ext)) {
               return "static/img/[name]-[hash][extname]"
             }
@@ -110,8 +110,6 @@ export default defineConfig(({ mode }) => {
           }
         }
       },
-      // 是否开启 gzip 压缩大小报告，禁用时能略微提高构建性能
-      reportCompressedSize: true,
       // 单个 chunk 文件的大小超过 2048kB 时发出警告
       chunkSizeWarningLimit: 2048
     },
