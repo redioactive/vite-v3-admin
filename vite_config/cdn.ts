@@ -30,7 +30,7 @@ export const cdn = {
     "https://cdn.jsdelivr.net/npm/mitt@3.0.1/dist/mitt.umd.min.js",
     "https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js",
     "https://cdn.jsdelivr.net/npm/screenfull@6.0.2/index.min.js",
-    // 生产环境下直接使用 lodash-es的 cdn 会导致页面加载不出来 所以这里采用 UMD 的形式加载cdn
+    // 生产环境下直接使用 lodash-es的 cdn 会导致页面加载不出来 所以这里采用 UMD 的形式加载lodash
     "https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"
   ],
   css: [

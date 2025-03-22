@@ -1,3 +1,4 @@
+import type { ModuleInfo, TransformPluginContext } from "rollup"
 import type { PluginOption } from "vite"
 import path from "node:path"
 import vue from "@vitejs/plugin-vue"
@@ -16,6 +17,11 @@ import { externalGlobalsObj } from "./external.ts"
 
 // 环境判断
 const isProduction = process.env.NODE_ENV === "production"
+
+// 插件上下文类型
+type TransformContext = TransformPluginContext & {
+  getModuleInfo: (id: string) => ModuleInfo | null
+}
 
 // 计算基准路径
 function getBaseDir() {
@@ -110,6 +116,27 @@ export function createPlugins(isProduction: boolean): PluginOption[] {
           : html
       }
     },
+    // // 异步资源标记插件
+    // {
+    //   name: "mark-async-resource",
+    //   transform(
+    //     this: TransformContext,
+    //     code: string,
+    //     id: string
+    //   ) {
+    //     if (id.endsWith(".css")) {
+    //       const moduleInfo = this.getModuleInfo(id)
+    //       const dynamicCount = moduleInfo?.dynamicImporters?.length || 0
+    //
+    //       return {
+    //         code,
+    //         meta: {
+    //           _asyncResource: dynamicCount > 0
+    //         }
+    //       }
+    //     }
+    //   }
+    // },
     // 分析构建工具
     visualizer({
       open: true,

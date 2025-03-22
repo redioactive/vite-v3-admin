@@ -54,6 +54,7 @@ export default defineConfig(({ mode }) => {
     // 构建配置
     build: {
       outDir: "dist",
+      cssCodeSplit: true,
       // 自定义底层的 Rollup 打包配置
       rollupOptions: {
         external: Object.keys(externalGlobalsObj),
@@ -80,15 +81,16 @@ export default defineConfig(({ mode }) => {
               "/src/pages/demo/vxe-table/index.vue"
             ]
           },
-          /**
-           * 拆分静态文件
-           * 异步拆分
-           */
           // 控制入口 JS 文件
           entryFileNames: "assets/js/[name]-[hash].js",
 
-          // 控制代码分割产生的 JS 文件
-          chunkFileNames: "assets/js/[name]-[hash].js",
+          // 处理 JS 异步 (类型安全)
+          chunkFileNames: (chunkInfo) => {
+            return chunkInfo.isDynamicEntry
+              ? "assets/js/async/[name]-[hash].js"
+              : "assets/js/[name]-[hash].js"
+          },
+          // 资源分类 (等效 cssAsync + 静态资源分类)
           assetFileNames: (assetInfo) => {
             const ext = assetInfo.name?.split(".").pop()?.toLowerCase()
             if (!ext) return "assets/[name]-[hash][extname]"
