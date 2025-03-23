@@ -3,6 +3,8 @@ dist
 node_modules
 .eslintcache
 vite.config.*.timestamp*
+.idea
+.github
 
 # MacOS
 .DS_Store

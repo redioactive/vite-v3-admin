@@ -10,12 +10,12 @@
 
     <!-- CDN JS -->
     <% if (process.env.NODE_ENV === "production") { %> <% cdnJs.forEach(function(i) { %>
-    <script src="<%= i %>"></script>
+    <script src="<%= i %>" defer></script>
     <% }) %> <% } %>
 
     <!-- CDN CSS -->
     <% if (process.env.NODE_ENV === "production") { %> <% cdnCss.forEach(function(i) { %>
-    <link href="<%= i %>" rel="stylesheet" />
+    <link href="<%= i %>" rel="preconnect" />
     <% }) %> <% } %>
   </head>
 

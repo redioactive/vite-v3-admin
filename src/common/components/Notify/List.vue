@@ -23,7 +23,7 @@ const props = defineProps<Props>()
           </div>
         </div>
         <div v-if="item.avatar" class="card-avatar">
-          <img :src="item.avatar" width="34">
+          <img :src="item.avatar" width="34" alt="">
         </div>
       </div>
     </template>
