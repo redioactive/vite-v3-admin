@@ -3,5 +3,5 @@
 
 @mixin theme-styles {
   @include layouts.styles;
-  @include element-ep-styles;
+  @include element.ep-styles;
 }
