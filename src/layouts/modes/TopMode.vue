@@ -25,7 +25,7 @@ const { showTagsView, showLogo } = storeToRefs(settingsStore)
 </template>
 
 <style lang="scss" scoped>
-@import "@@/assets/styles/mixins.scss";
+@use "@@/assets/styles/mixins.scss" as *;
 $transition-time: 0.35s;
 
 .app-wrapper {

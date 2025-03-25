@@ -1,2 +1,6 @@
-@import "./variables.scss";
-@import "../core/index.scss";
+@use "./variables" as vars;
+@use "../core/index" as core;
+
+.#{vars.$theme-name} {
+  @include core.theme-styles;
+}

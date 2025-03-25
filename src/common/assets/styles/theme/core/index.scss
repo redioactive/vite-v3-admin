@@ -1,4 +1,7 @@
-.#{$theme-name} {
-  @import "./layouts.scss";
-  @import "./element-plus.scss";
+@use "layouts" as layouts;
+@use "element-plus" as element;
+
+@mixin theme-styles {
+  @include layouts.styles;
+  @include element-ep-styles;
 }

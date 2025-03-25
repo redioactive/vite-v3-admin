@@ -29,7 +29,7 @@ const settingsStore = useSettingsStore()
 </template>
 
 <style lang="scss" scoped>
-@import "@@/assets/styles/mixins.scss";
+@use "@@/assets/styles/mixins.scss" as *;
 
 .app-main {
   width: 100%;

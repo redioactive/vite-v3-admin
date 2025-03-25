@@ -1,3 +1,3 @@
 // 注册多主题
-@import "./dark/index.scss";
-@import "./dark-blue/index.scss";
+@use "./dark/index.scss" as dark;
+@use "./dark-blue/index.scss" as dark-blue;

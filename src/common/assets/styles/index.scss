@@ -1,19 +1,19 @@
 // 全局 CSS 变量
-@import "./variables.css";
+@use "./variables.css" as *;
 // Transition
-@import "./transition.scss";
+@use "./transition.scss" as *;
 // Element Plus
-@import "./element-plus.css";
-@import "./element-plus.scss";
+@use "./element-plus.css" as *;
+@use "./element-plus.scss" as *;
 // Vxe Table
-@import "./vxe-table.css";
-@import "./vxe-table.scss";
+@use "./vxe-table.css" as *;
+@use "./vxe-table.scss" as *;
 // 注册多主题
-@import "./theme/register.scss";
+@use "./theme/register.scss" as *;
 // Mixins
-@import "./mixins.scss";
+@use "./mixins.scss" as *;
 // View Transition
-@import "./view-transition.scss";
+@use "./view-transition.scss" as *;
 
 // 业务页面几乎都应该在根元素上挂载 class="app-container"，以保持页面美观
 .app-container {
